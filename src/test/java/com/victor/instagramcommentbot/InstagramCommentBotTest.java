@@ -20,7 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.edge.EdgeOptions;
 
-public class MainPageTest {
+public class InstagramCommentBotTest {
   private static final int SHORT_WAIT_BASE_VALUE = 5_500;
   private static final int LONG_WAIT_BASE_VALUE = 11_000;
   private static final int VERY_LONG_WAIT_BASE_VALUE = 200_000;
