@@ -26,6 +26,7 @@ public class InstagramCommentBotTest {
   private static final int VERY_LONG_WAIT_BASE_VALUE = 200_000;
   private static final int RANDOM_RANGE_LOWER_BOUND = 500;
   private static final int RANDOM_RANGE_UPPER_BOUND = 3_000;
+  private static final int EXPECTED_NUMBER_OF_POSTED_COMMENTS = 273;
   private static final String TAG_CHARACTER = "@";
   private final Random random = new Random();
   private final Properties properties = new Properties();
@@ -46,14 +47,14 @@ public class InstagramCommentBotTest {
   }
 
   @Test
-  void instagram() throws IOException {
+  void instagramCommentBotTest() throws IOException {
     try (InputStream inputStream = getClass().getResourceAsStream("/application.properties")) {
       properties.load(inputStream);
     }
     login();
     navigateToTargetPost();
     int numberOfPostedComments = fillComments();
-    assertEquals(273, numberOfPostedComments);
+    assertEquals(EXPECTED_NUMBER_OF_POSTED_COMMENTS, numberOfPostedComments);
   }
 
   private void randomWait(int baseValue) {
