@@ -111,17 +111,23 @@ public class InstagramCommentBotTest {
 
   private void postComment(String commentLine) {
     while (!instagramPostPage.commentInput.getText().isEmpty()) {
-      System.out.println(
-          "commentInput is not empty, maybe there is comment timeout. Waiting for "
-              + VERY_LONG_WAIT_BASE_VALUE
-              + "ms");
-      randomWait(VERY_LONG_WAIT_BASE_VALUE);
+      retryPostExistingComment();
     }
 
     String commentToPost = TAG_CHARACTER + commentLine;
     instagramPostPage.commentInput.sendKeys(commentToPost);
     System.out.println("Posting comment: " + instagramPostPage.commentInput.getText());
     randomWait(SHORT_WAIT_BASE_VALUE);
+    instagramPostPage.postButton.click();
+    randomWait(SHORT_WAIT_BASE_VALUE);
+  }
+
+  private void retryPostExistingComment() {
+    System.out.println(
+            "commentInput is not empty, maybe there is comment timeout. Waiting for "
+                    + VERY_LONG_WAIT_BASE_VALUE
+                    + "ms");
+    randomWait(VERY_LONG_WAIT_BASE_VALUE);
     instagramPostPage.postButton.click();
     randomWait(SHORT_WAIT_BASE_VALUE);
   }
