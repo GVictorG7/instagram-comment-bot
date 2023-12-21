@@ -10,5 +10,5 @@ public class InstagramLoginPage {
   public SelenideElement usernameInput = $x("//input[@name='username']");
   public SelenideElement passwordInput = $x("//input[@name='password']");
   public SelenideElement loginButton = $x("//div[contains(text(), 'Log in')]");
-  public SelenideElement notSaveLoginInfo = $x("//div[contains(text(), 'Not Now')]");
+  public SelenideElement notSaveLoginInfo = $x("//div[contains(text(), 'Not now')]");
 }
