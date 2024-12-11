@@ -37,12 +37,14 @@ class InstagramFollowersBotTest extends InstagramTestBase {
             instagramMyProfilePage.followersSectionButton,
             instagramMyProfilePage.followersSectionPanel,
             instagramMyProfilePage.followerElementList);
+    System.out.println("Followers collected: " + followers.size());
     System.out.println("Starting collecting Following...");
     Set<String> following =
         extractAccounts(
             instagramMyProfilePage.followingSectionButton,
             instagramMyProfilePage.followingSectionPanel,
             instagramMyProfilePage.followingElementList);
+    System.out.println("Followings collected: " + following.size());
 
     writeAccountsToFiles(followers, FOLLOWERS_FILE_PATH);
     writeAccountsToFiles(following, FOLLOWING_FILE_PATH);
