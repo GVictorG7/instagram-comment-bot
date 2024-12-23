@@ -1,5 +1,6 @@
 src/test/resources/followers.txt
 src/test/resources/following.txt
+src/test/resources/friends.txt
 
 .gradle
 build/

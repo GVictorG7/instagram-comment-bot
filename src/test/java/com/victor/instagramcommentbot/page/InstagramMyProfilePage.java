@@ -13,6 +13,6 @@ public class InstagramMyProfilePage {
 
   public SelenideElement followingSectionButton = $x("//a[contains(text(), ' following')]");
   public SelenideElement followingSectionPanel =
-      $x("//div[contains(text(), 'Following')]/../../../../../div[4]");
+      $x("//div[contains(text(), 'Following')]/../../../../../div[3]");
   public ElementsCollection followingElementList = followingSectionPanel.$$("div");
 }

@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 class InstagramFollowersBotTest extends InstagramTestBase {
   private static final Path FOLLOWERS_FILE_PATH = Paths.get("src/test/resources/followers.txt");
   private static final Path FOLLOWING_FILE_PATH = Paths.get("src/test/resources/following.txt");
+  private static final Path FRIENDS_FILE_PATH = Paths.get("src/test/resources/friends.txt");
   private final InstagramMyProfilePage instagramMyProfilePage = new InstagramMyProfilePage();
 
   @Test
@@ -46,8 +47,8 @@ class InstagramFollowersBotTest extends InstagramTestBase {
             instagramMyProfilePage.followingElementList);
     System.out.println("Followings collected: " + following.size());
 
-    writeAccountsToFiles(followers, FOLLOWERS_FILE_PATH);
-    writeAccountsToFiles(following, FOLLOWING_FILE_PATH);
+    writeAccountsToFile(followers, FOLLOWERS_FILE_PATH);
+    writeAccountsToFile(following, FOLLOWING_FILE_PATH);
 
     System.out.println("Followers lost: ");
     System.out.println(SetOperations.difference(oldFollowers, followers));
@@ -68,9 +69,11 @@ class InstagramFollowersBotTest extends InstagramTestBase {
     System.out.println(SetOperations.difference(followers, following));
 
     System.out.println("Friends: ");
-    System.out.println(SetOperations.intersection(following, followers));
+    Set<String> friends = SetOperations.intersection(following, followers);
+    System.out.println(friends);
+    writeAccountsToFile(friends, FRIENDS_FILE_PATH);
 
-    // TODO write to file, add blacklist
+    // TODO add blacklist
   }
 
   private void navigateToMyProfilePage() {
@@ -134,7 +137,7 @@ class InstagramFollowersBotTest extends InstagramTestBase {
     return accounts;
   }
 
-  private void writeAccountsToFiles(Set<String> accounts, Path filePath) {
+  private void writeAccountsToFile(Set<String> accounts, Path filePath) {
     try (BufferedWriter writer =
         Files.newBufferedWriter(
             filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
