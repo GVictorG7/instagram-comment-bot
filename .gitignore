@@ -1,6 +1,9 @@
 src/test/resources/followers.txt
 src/test/resources/following.txt
 src/test/resources/friends.txt
+src/test/resources/blacklist.txt
+src/test/resources/additions.txt
+src/test/resources/comments.txt
 
 .gradle
 build/
