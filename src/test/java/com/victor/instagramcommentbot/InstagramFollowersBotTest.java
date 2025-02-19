@@ -98,15 +98,20 @@ class InstagramFollowersBotTest extends InstagramTestBase {
 
   private void scrollUntilFetchComplete(SelenideElement panel, ElementsCollection panelElements) {
     int itemCountBeforeScroll, itemCountAfterScroll;
-    ElementsCollection items;
 
     do {
-      items = panelElements;
-      itemCountBeforeScroll = items.size();
+      itemCountBeforeScroll = panelElements.size();
       executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
       randomWait(SCROLL_WAIT_VALUE);
-      itemCountAfterScroll = items.size();
+      itemCountAfterScroll = panelElements.size();
     } while (itemCountAfterScroll > itemCountBeforeScroll);
+
+    executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
+    randomWait(SCROLL_WAIT_VALUE);
+    executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
+    randomWait(SCROLL_WAIT_VALUE);
+    executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
+    randomWait(SCROLL_WAIT_VALUE);
   }
 
   private Set<String> eliminateExtraElements(String[] accountElements) {
