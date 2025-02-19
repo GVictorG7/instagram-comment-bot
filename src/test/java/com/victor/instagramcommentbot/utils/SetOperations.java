@@ -15,4 +15,10 @@ public class SetOperations {
     intersection.retainAll(set2);
     return intersection;
   }
+
+  public static <E> Set<E> union(Set<E> set1, Set<E> set2) {
+    Set<E> union = new HashSet<>(set1);
+    union.addAll(set2);
+    return union;
+  }
 }
