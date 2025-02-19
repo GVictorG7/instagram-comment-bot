@@ -4,23 +4,37 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.victor.instagramcommentbot.page.InstagramPostPage;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import com.victor.instagramcommentbot.utils.SetOperations;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class InstagramCommentBotTest extends InstagramTestBase {
   private static final int VERY_LONG_WAIT_BASE_VALUE = 200_000;
   private static final int EXPECTED_NUMBER_OF_POSTED_COMMENTS = 242;
   private static final String TAG_CHARACTER = "@";
+  private static final Path FRIENDS_FILE_PATH = Paths.get("src/test/resources/comments.txt");
+  private static final Path BLACKLIST_FILE_PATH = Paths.get("src/test/resources/blacklist.txt");
+  private static final Path ADDITIONS_FILE_PATH = Paths.get("src/test/resources/additions.txt");
   private final InstagramPostPage instagramPostPage = new InstagramPostPage();
 
   @Test
   void instagramCommentBotTest() throws IOException {
     instagramSetUp();
     navigateToTargetPost();
-    int numberOfPostedComments = fillComments();
+    Set<String> commentsToPost = getComments();
+    int numberOfPostedComments = fillComments(commentsToPost);
     assertEquals(EXPECTED_NUMBER_OF_POSTED_COMMENTS, numberOfPostedComments);
+  }
+
+  private Set<String> getComments() {
+    Set<String> friends = readAccountsFromFiles(FRIENDS_FILE_PATH);
+    Set<String> additions = readAccountsFromFiles(ADDITIONS_FILE_PATH);
+    Set<String> blacklisted = readAccountsFromFiles(BLACKLIST_FILE_PATH);
+    Set<String> result = SetOperations.union(friends, additions);
+    return SetOperations.difference(result, blacklisted);
   }
 
   private void navigateToTargetPost() {
@@ -30,21 +44,12 @@ class InstagramCommentBotTest extends InstagramTestBase {
     randomWait(SHORT_WAIT_BASE_VALUE);
   }
 
-  private int fillComments() {
+  private int fillComments(Set<String> comments) {
     int numberOfPostedComments = 0;
-    try (BufferedReader bufferedReader =
-        new BufferedReader(new FileReader("src/test/resources/comments.txt"))) {
-      System.out.println("Starting posting comments...");
-      String commentLine = bufferedReader.readLine();
-      do {
-        postComment(commentLine);
-        numberOfPostedComments++;
-        commentLine = bufferedReader.readLine();
-      } while (commentLine != null);
-    } catch (IOException e) {
-      System.err.println(
-          "IOException occurred. Either the file was not found, or an error occurred at reading: "
-              + e.getMessage());
+    System.out.println("Starting posting comments...");
+    for (String comment : comments) {
+      postComment(comment);
+      numberOfPostedComments++;
     }
     System.out.println("Commenting finished!");
     return numberOfPostedComments;

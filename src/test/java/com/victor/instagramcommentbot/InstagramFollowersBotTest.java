@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Selenide.open;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.victor.instagramcommentbot.page.InstagramMyProfilePage;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -121,20 +120,6 @@ class InstagramFollowersBotTest extends InstagramTestBase {
     }
 
     return filteredElements;
-  }
-
-  private Set<String> readAccountsFromFiles(Path filePath) {
-    Set<String> accounts = new HashSet<>();
-    try (BufferedReader reader = Files.newBufferedReader(filePath)) {
-      String line;
-      while ((line = reader.readLine()) != null) {
-        accounts.add(line);
-      }
-    } catch (IOException ex) {
-      System.err.println(
-          "IOException occurred while reading accounts from file: " + ex.getMessage());
-    }
-    return accounts;
   }
 
   private void writeAccountsToFile(Set<String> accounts, Path filePath) {
