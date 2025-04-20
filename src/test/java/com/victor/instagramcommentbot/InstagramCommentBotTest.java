@@ -15,7 +15,7 @@ class InstagramCommentBotTest extends InstagramTestBase {
   private static final int VERY_LONG_WAIT_BASE_VALUE = 200_000;
   private static final int EXPECTED_NUMBER_OF_POSTED_COMMENTS = 242;
   private static final String TAG_CHARACTER = "@";
-  private static final Path FRIENDS_FILE_PATH = Paths.get("src/test/resources/comments.txt");
+  private static final Path FRIENDS_FILE_PATH = Paths.get("src/test/resources/friends.txt");
   private static final Path BLACKLIST_FILE_PATH = Paths.get("src/test/resources/blacklist.txt");
   private static final Path ADDITIONS_FILE_PATH = Paths.get("src/test/resources/additions.txt");
   private final InstagramPostPage instagramPostPage = new InstagramPostPage();

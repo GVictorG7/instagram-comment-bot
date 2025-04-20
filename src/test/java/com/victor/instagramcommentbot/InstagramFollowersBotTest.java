@@ -71,8 +71,6 @@ class InstagramFollowersBotTest extends InstagramTestBase {
     Set<String> friends = SetOperations.intersection(following, followers);
     System.out.println(friends);
     writeAccountsToFile(friends, FRIENDS_FILE_PATH);
-
-    // TODO add blacklist
   }
 
   private void navigateToMyProfilePage() {

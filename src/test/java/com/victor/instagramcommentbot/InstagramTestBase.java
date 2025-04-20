@@ -22,11 +22,11 @@ import java.util.Set;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class InstagramTestBase {
+class InstagramTestBase {
   private static final int RANDOM_RANGE_LOWER_BOUND = 600;
-  private static final int RANDOM_RANGE_UPPER_BOUND = 3_500;
-  private static final int LONG_WAIT_BASE_VALUE = 11_500;
-  protected static final int SHORT_WAIT_BASE_VALUE = 5_500;
+  private static final int RANDOM_RANGE_UPPER_BOUND = 3_000;
+  private static final int LONG_WAIT_BASE_VALUE = 11_000;
+  protected static final int SHORT_WAIT_BASE_VALUE = 5_000;
   protected static final int SCROLL_WAIT_VALUE = 4_500;
   private final InstagramLoginPage instagramLoginPage = new InstagramLoginPage();
   //  private final InstagramHomePage instagramHomePage = new InstagramHomePage();
@@ -34,13 +34,13 @@ public class InstagramTestBase {
   protected final Properties properties = new Properties();
 
   @BeforeAll
-  public static void setUpAll() {
+  static void setUpAll() {
     Configuration.browserSize = "1280x800";
     SelenideLogger.addListener("allure", new AllureSelenide());
   }
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Configuration.browserCapabilities = new EdgeOptions().addArguments("--remote-allow-origins=*");
     open("https://www.instagram.com/");
   }
