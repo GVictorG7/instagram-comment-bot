@@ -106,10 +106,6 @@ class InstagramFollowersBotTest extends InstagramTestBase {
 
     executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
     randomWait(SCROLL_WAIT_VALUE);
-    executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
-    randomWait(SCROLL_WAIT_VALUE);
-    executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight", panel);
-    randomWait(SCROLL_WAIT_VALUE);
   }
 
   private Set<String> eliminateExtraElements(String[] accountElements) {

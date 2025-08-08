@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 class InstagramTestBase {
   private static final int RANDOM_RANGE_LOWER_BOUND = 600;
   private static final int RANDOM_RANGE_UPPER_BOUND = 3_000;
-  private static final int LONG_WAIT_BASE_VALUE = 11_000;
+  private static final int LONG_WAIT_BASE_VALUE = 10_000;
   protected static final int SHORT_WAIT_BASE_VALUE = 5_000;
   protected static final int SCROLL_WAIT_VALUE = 4_500;
   private final InstagramLoginPage instagramLoginPage = new InstagramLoginPage();
